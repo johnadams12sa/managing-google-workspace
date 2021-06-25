@@ -42,7 +42,10 @@ def main():
 	with open('signature_template.html', 'r') as file:
 		signature = file.read()	
 
-	
+
+	#signature.replace("first_name", gmail_service.users().getProfile().emailAddress)
+
+
 	#stores the signature into the configuration to be pushed to the account
 	sendAsConfiguration = {
 		'signature' : signature 
@@ -55,6 +58,7 @@ def main():
 			sendAsEmail = primary_alias.get('sendAsEmail'),
 			body = sendAsConfiguration).execute()
 	print('Updated signature for: %s' % results.get('displayName'))
+	print('Email is: %s' %results.get('sendAsEmail'))
 
 #calls main function
 if __name__ == '__main__':
