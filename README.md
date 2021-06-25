@@ -26,3 +26,6 @@ on Mac
   -> deactivate  
 
 
+*************NOTES*****************
+Next steps moving forward is to clean up commenting and possibly modulizing the code so that it isnt a dense section of code in main(), not great practice
+06/24/21
