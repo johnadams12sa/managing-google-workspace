@@ -11,6 +11,7 @@ Requires:
 
 Setup:  
 *Install Google Client Library in your environment, recommend using a virtual environment   
+(google-api-python-client for interacting with APIs, oauth-httplib2 for using http protocols, and oauthlib for authentication)  
   -> pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib  
 
 on Mac  
