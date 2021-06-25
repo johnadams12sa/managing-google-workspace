@@ -11,6 +11,7 @@ Google Account (if you are using OAuth 2.0)
 
 Setup:
 Install Google Client Library in your environment, recommend using a virtual environment
+  -> pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 
 on Mac
 (creates the virtual environment, virtual environments help with package/modules organization)
@@ -22,3 +23,5 @@ source name_of_env/bin/activate
 
 (deactivates when done)
 deactivate
+
+
