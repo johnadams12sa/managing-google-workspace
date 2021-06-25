@@ -1,5 +1,6 @@
 # IMPORT STATEMENTS, AS REQUIRED
 import os.path
+import sys
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -22,14 +23,14 @@ def main():
 				'credentials.json', API_scopes)
 			creds = flow.run_local_server(port=0)
 		with open('token.json','w') as token:
-			token.write(creds.to_json())
-
-
+			token.write(creds.to_json())	
+	
+	
 	#creates service object for interacting with Gmail API
 	gmail_service = build('gmail', 'v1', credentials=creds)
 
 
-	#searches for primary alias
+	#searches for primary alias, parameter 'me' is a special variable to denote authorized user
 	primary_alias = None
 	aliases = gmail_service.users().settings().sendAs().\
 		list(userId='me').execute()
@@ -42,13 +43,22 @@ def main():
 	with open('signature_template.html', 'r') as file:
 		signature = file.read()	
 
+	#command line arguments set into local variables
+	cli_input_first_name = sys.argv[1]
+	cli_input_last_name = sys.argv[2]
+	cli_input_job_title = sys.argv[3]
+	cli_input_email = sys.argv[4]
 
-	#signature.replace("first_name", gmail_service.users().getProfile().emailAddress)
+	#replace the boilerplate email template with parameters fed in from the command line
+	new_signature = signature.replace('first_name_placeholder', cli_input_first_name).replace('last_name_placeholder', cli_input_last_name).replace('Job_Title', cli_input_job_title).replace('email_placeholder',  cli_input_email).replace('email_link_placeholder', 'mailto:' + 'email_placeholder'+ '@brooklynminds.com')
 
+	#signature.replace('last_name_placeholder', cli_input_last_name)
+	#signature.replace('email_placeholder', cli_input_email)	
+	#signature.replace('email_link_placeholder', "mailto:" + "email_placeholder" + "@brooklynminds.com")
 
 	#stores the signature into the configuration to be pushed to the account
 	sendAsConfiguration = {
-		'signature' : signature 
+		'signature' : new_signature 
 	}
 
 
@@ -60,6 +70,6 @@ def main():
 	print('Updated signature for: %s' % results.get('displayName'))
 	print('Email is: %s' %results.get('sendAsEmail'))
 
-#calls main function
+#ensures this script runs
 if __name__ == '__main__':
 	main()
