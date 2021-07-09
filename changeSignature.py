@@ -10,7 +10,7 @@ from google.oauth2 import service_account
 
 # VARIABLE DECLARATIONS / BUILDING OBJECTS
 API_scopes = ['https://www.googleapis.com/auth/gmail.settings.basic', 'https://www.googleapis.com/auth/gmail.settings.sharing']
-service_account_file = 'path-to-your-service-account-key'
+service_account_file = '/Users/aaron.yam/Desktop/googleapi/service_account_key.json'
 
 #command line arguments set into local variables
 cli_input_first_name = sys.argv[1]
@@ -42,10 +42,10 @@ def main():
 	#gmail_service = build('gmail', 'v1', credentials=creds)
 
 	#creating service_account credentials to use to "impersonate" user in domain, domain wide delegation was granted to this service account
-	credentials = service_account.Credentials.from_service_account_file('/Users/aaron.yam/Desktop/googleapi/service_account_key.json', scopes=API_scopes)
+	credentials = service_account.Credentials.from_service_account_file(service_account_file, scopes=API_scopes)
 
 	#enter user to "impersonate" here under delegated_credentials, likely entered from command line
-	delegated_credentials = credentials.with_subject(sys.argv[4])
+	delegated_credentials = credentials.with_subject(cli_input_email)
 	gmail_service2 = build('gmail','v1',credentials=delegated_credentials)
 
 #Changing the signature
