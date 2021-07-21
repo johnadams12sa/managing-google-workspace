@@ -37,3 +37,5 @@ Following scripts operate off of a service account with granted domain-wide dele
 What that essentially means is the service account will "impersonate" the end-user in the organization and act on behalf of the user
 This makes changing their signature easier without the need for their authentication and authorization
 Without the service account, you will need to use the other methods such as OAuth 2.0 Client ID which requires user authentication
+
+Highly recommend referring to the original source for guidance: https://developers.google.com/gmail/api/reference/rest
