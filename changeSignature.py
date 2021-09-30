@@ -7,7 +7,7 @@ from google.oauth2 import service_account
 
 # VARIABLE DECLARATIONS / BUILDING OBJECTS
 API_scopes = ['https://www.googleapis.com/auth/gmail.settings.basic', 'https://www.googleapis.com/auth/gmail.settings.sharing']
-service_account_file = '/Users/aaron.yam/Desktop/googleapi/service_account_key.json'
+service_account_file = '/path/to/service/key/credentials.json'
 
 #command line arguments set into local variables, note the order of the command line arguments
 cli_input_first_name = sys.argv[1]
