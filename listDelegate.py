@@ -3,7 +3,7 @@ from google.oauth2 import service_account
 import sys
 import os.path
 
-service_account_file = '/Users/aaron.yam/Desktop/googleapi/service_account_key.json'
+service_account_file = '/path/to/service/account/credentials.json'
 API_scopes = ['https://www.googleapis.com/auth/gmail.settings.basic', 'https://www.googleapis.com/auth/gmail.settings.sharing']
 
 #command line argument only requires user of same domain
